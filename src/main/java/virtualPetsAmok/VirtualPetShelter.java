@@ -3,6 +3,7 @@ package virtualPetsAmok;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 public class VirtualPetShelter {
 
@@ -128,4 +129,18 @@ public class VirtualPetShelter {
 		int happiness = 10;
 
 	}
+
+	public int getCleanLitterbox() {
+		return -10;
+	}
+
+	public String optionNo5Display() {
+		String optionNo5Display = "";
+		for (Entry<String, VirtualPet> eachPet : pets.entrySet()) {
+			optionNo5Display += "name: " + eachPet.getValue().getName() + "\t" + eachPet.getValue().getDescription()
+					+ "\n";
+		}
+		return optionNo5Display;
+	}
+
 }

@@ -12,6 +12,7 @@ public class VirtualPetApp {
 		System.out.println("Welcome to our shelter! Our pets are going crazy.");
 		System.out.println();
 
+		// defining pets
 		OrganicDog dog1 = new OrganicDog("Baker", "12-yo dog.", 40, 50, 60, 40, 60, 10);
 		OrganicDog dog2 = new OrganicDog("Charlie", "6-yo dog.", 50, 40, 50, 50, 50, 10);
 		OrganicDog dog3 = new OrganicDog("Delta", "2-yo dog.", 60, 60, 60, 60, 80, 10);
@@ -24,6 +25,7 @@ public class VirtualPetApp {
 		RobotDog robo2 = new RobotDog("Tank", "A robot that desires things like oil.", 30, 40, 60, true);
 		RobotDog robo3 = new RobotDog("Slacker", "A lazy robot dog, hence the name.", 70, 40, 80, true);
 
+		// adding pets
 		pets.addPet(dog1);
 		pets.addPet(dog2);
 		pets.addPet(dog3);
@@ -57,6 +59,7 @@ public class VirtualPetApp {
 				}
 			}
 
+			// cats
 			System.out.println("\n\t\t    **Cats and Felines**\n");
 			System.out.println("Name\t|Hunger\t|Thirst\t|Boredom |Happiness");
 			System.out.println("--------|-------|-------|--------|---------");
@@ -65,6 +68,7 @@ public class VirtualPetApp {
 			System.out.println("Nothing will happen--yet. Deal with it, as it stinks from time to time.\n");
 			System.out.println("Shelter Litter Box Level: " + pets.cleanLitterbox() + "\n");
 
+			// robotic dogs
 			System.out.println("\n\t    **Robotic Dogs**\n");
 			System.out.println("Name\t|Oil\t|Maintenance |Happiness");
 			System.out.println("--------|-------|--------|---------");
@@ -99,7 +103,7 @@ public class VirtualPetApp {
 				System.out.println("\nWhich shelter pet would you like to walk today? \n");
 				System.out.println("Just a reminder: ");
 				System.out.println("Taking robot dogs or robopets on a walk will decrease their oil levels. \n");
-				System.out.println(pets.optionDisplay());
+				System.out.println(pets.optionNo5Display());
 				String petName = input.nextLine();
 				petName = petName.substring(0, 1).toUpperCase() + petName.substring(1).toLowerCase();
 				pets.play(petName);
@@ -108,73 +112,74 @@ public class VirtualPetApp {
 			} else if (optionEntered.equals("5")) {
 				System.out.println("You've chosen to adopt a pet.");
 				System.out.println("Which pet would you like to adopt?\n");
-				System.out.println(pets.option5Display());
+				System.out.println(pets.optionNo5Display());
 				String petName = input.nextLine();
 
-				if (!pets.doesPetRemain(petName)) {
-					System.out.println("This Dog does not exist.");
+				if (!pets.addPet(petName)) {
+					System.out.println("This dog doesn't exist.");
 				} else {
-					pets.adopt(petName);
-					System.out.println("Congrats on adopting your new Shelter baby: \n" + petName + "!");
+					pets.removePet(petName);
+					System.out.println("Congrats on adopting your new baby! \n" + petName + "!");
 				}
 
 			} else if (optionEntered.equals("6")) {
 				System.out.println("What type of pet are your surrendering?\n");
-				System.out.println("Dog? Cat? Robot Dog?");
+				System.out.println("Is it either a dog, cat or robopet?");
 				String petDecision = input.nextLine();
 
-				if (petDecision.equalsIgnoreCase("Dog")) {
-					System.out.println("Enter the name of the Dog being surrendered: ");
+				if (petDecision.equalsIgnoreCase("OrganicDog")) {
+					System.out.println("Enter the name of your dog being surrendered: ");
 					String newPetName = input.nextLine();
 
-					System.out.println("Enter a description for the Dog being surrendered: ");
+					System.out.println("Enter a description for your dog being surrendered: ");
 					String newPetDescription = input.nextLine();
 
-					pets.add(new Dog(newPetName, newPetDescription, 50, 50, 50, 50, 50));
-					System.out.println("Your Dog will sure miss you.");
-					System.out.println("Thanks admitting your Dog instead of discarding your Dog elsewhere...\n");
+					pets.add(new OrganicDog(newPetName, newPetDescription, 50, 50, 50, 50, 50, 0));
+					System.out.println("Your dog will definitely miss you.");
+					System.out.println("Thanks for admitting your dog, instead of discarding your Dog elsewhere...\n");
 
-				} else if (petDecision.equalsIgnoreCase("Cat")) {
-					System.out.println("Enter the name of the Cat being surrendered: ");
+				} else if (petDecision.equalsIgnoreCase("OrganicCat")) {
+					System.out.println("Enter the name of the cat being given up: ");
 					String newPetName = input.nextLine();
 
-					System.out.println("Enter a description for the Cat being surrendered: ");
+					System.out.println("Enter a description for the cat being given up: ");
 					String newPetDescription = input.nextLine();
 
-					pets.add(new Cat(newPetName, newPetDescription, 50, 50, 50, 50, 50));
+					pets.add(new OrganicCat(newPetName, newPetDescription, 50, 50, 50, 50, 50, 0));
 					System.out.println("Your Cat will sure miss you.");
 					System.out.println("Thanks admitting your pet instead of discarding your Cat elsewhere...\n");
 
-				} else if (petDecision.equalsIgnoreCase("Robot Dog")) {
-					System.out.println("Enter the name of the Robot Dog that you are surrendering.");
+				} else if (petDecision.equalsIgnoreCase("Robopet/Robot dog")) {
+					System.out.println("Enter the name of the robopet that you are surrendering.");
 					String newPetName = input.nextLine();
 
-					System.out.println("Enter a description for the Robot Dog being surrendered: ");
+					System.out.println("Enter a description for the robopet or dog being surrendered: ");
 					String newPetDescription = input.nextLine();
 
-					pets.add(new RobotDog(newPetName, newPetDescription, 50, 50, 50));
-					System.out.println("Your Robot Pet will sure miss you.");
-					System.out.println("Thanks admitting your pet instead of discarding your Robot Pet elsewhere...\n");
+					pets.add(new RobotDog(newPetName, newPetDescription, 50, 50, 50, true));
+					System.out.println("Your robot will miss you.");
+					System.out
+							.println("Thanks for admitting your pet instead of discarding your robopet elsewhere...\n");
 				}
 
 			} else if (optionEntered.equals("7")) {
-				System.out.println("Would you like to clean the Dog Kennels?");
+				System.out.println("Would you like to clean the shelter's kennels?");
 				System.out.println("Yes or No");
 				String newDecision = input.nextLine();
 				if (newDecision.equalsIgnoreCase("Yes")) {
-					pets.cleanCage();
-					System.out.println("Thanks for cleaning the Kennels!");
+					pets.cleanAll();
+					System.out.println("Thanks for cleaning these kennels!");
 				} else if (newDecision.equalsIgnoreCase("No")) {
 					System.out.println("Are you sure?");
-					System.out.println("Some of the Kennels look like they need it.\n");
+					System.out.println("Some of these kennels look like they need it.\n");
 				}
 
 			} else if (optionEntered.equals("8")) {
-				System.out.println("Would you like to clean the Shelter Litter Box now?");
+				System.out.println("Would you like to clean the shelter's litterbox now?");
 				System.out.println("Yes or No");
 				String newDecision = input.nextLine();
 				if (newDecision.equalsIgnoreCase("Yes")) {
-					pets.cleanLitterbox();
+					pets.getCleanLitterbox();
 					System.out.println("That litterbox definitely needed it.");
 					System.out.println("Thank you.\n");
 				} else if (newDecision.equalsIgnoreCase("No")) {
