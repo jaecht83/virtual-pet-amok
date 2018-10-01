@@ -38,6 +38,7 @@ public class VirtualPetApp {
 		pets.addPet(robo2);
 		pets.addPet(robo3);
 
+		// user has to make decision here
 		String userdecision = "";
 		while (!userdecision.equalsIgnoreCase("Yes")) {
 
@@ -66,7 +67,7 @@ public class VirtualPetApp {
 			System.out.println(pets.catStatus());
 			System.out.println("Shelter recommends not letting the litterbox go above 100.");
 			System.out.println("Nothing will happen--yet. Deal with it, as it stinks from time to time.\n");
-			System.out.println("Shelter Litter Box Level: " + pets.cleanLitterbox() + "\n");
+			System.out.println("Shelter Litter Box Level: " + pets.getCleanLitterbox() + "\n");
 
 			// robotic dogs
 			System.out.println("\n\t    **Robotic Dogs**\n");
