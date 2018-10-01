@@ -9,7 +9,8 @@ public class VirtualPetApp {
 		Scanner input = new Scanner(System.in);
 		VirtualPetShelter pets = new VirtualPetShelter();
 
-		System.out.println("Welcome to our shelter! Our pets are going crazy.");
+		System.out.println(
+				"Welcome to our shelter! Our pets are going crazy. You can adopt Baker, Charlie, Delta in the dog list, MeowMeow, Michelle, and Snowfox in the cat list, and Robocat, Tank or Slacker in the Robopet list.");
 		System.out.println();
 
 		// defining pets
@@ -43,18 +44,19 @@ public class VirtualPetApp {
 		while (!userdecision.equalsIgnoreCase("Yes")) {
 
 			System.out.println("  ***Thank you for visiting your local pet shelter***\n");
-			System.out.println("  That houses dogs, cats and robotic pets.");
-			System.out.println("  These are the statuses of the shelter pets you are looking for. \n");
+			System.out.println("  which houses dogs, cats and robotic pets.");
+			System.out.println(
+					"  These are the statuses of the shelter pets you are looking for; enter the appropriate number for your choice. \n");
 
 			// I am not sure why it is not taking my "pet" instances, even though they are
 			// mapped elsewhere.
 			System.out.println("\t\t     **Doggies**\n");
 			System.out.println("Name\t|Hunger\t|Thirst\t|Boredom |Waste  |Happiness");
 			System.out.println("--------|-------|-------|--------|-------|---------");
-			for (VirtualPet VirtualPet : VirtualPet.pet()) {
-				if (pet instanceof OrganicDog) {
-					if (((OrganicDog) pet).getCageStatus() >= 70) {
-						System.out.println(pet.getName() + " needs his kennel cleaned out.");
+			for (VirtualPet VirtualPet : VirtualPet.eachPet()) {
+				if (eachPet instanceof OrganicDog) {
+					if (((OrganicDog) eachPet).getCageStatus() >= 70) {
+						System.out.println(eachPet.getName() + " needs his kennel cleaned out.");
 						System.out.println("We need to do something about these dog kennel(s), stat!\n");
 					}
 				}
@@ -116,11 +118,11 @@ public class VirtualPetApp {
 				System.out.println(pets.optionNo5Display());
 				String petName = input.nextLine();
 
-				if (!pets.addPet(petName)) {
+				if (!pets.addPet(name)) {
 					System.out.println("This dog doesn't exist.");
 				} else {
-					pets.removePet(petName);
-					System.out.println("Congrats on adopting your new baby! \n" + petName + "!");
+					pets.removePet(name);
+					System.out.println("Congrats on adopting your new pet! \n" + petName + "!");
 				}
 
 			} else if (optionEntered.equals("6")) {
@@ -135,7 +137,7 @@ public class VirtualPetApp {
 					System.out.println("Enter a description for your dog being surrendered: ");
 					String newPetDescription = input.nextLine();
 
-					pets.add(new OrganicDog(newPetName, newPetDescription, 50, 50, 50, 50, 50, 0));
+					pets.addPet(new OrganicDog(newPetName, newPetDescription, 50, 50, 50, 50, 50, 0));
 					System.out.println("Your dog will definitely miss you.");
 					System.out.println("Thanks for admitting your dog, instead of discarding your Dog elsewhere...\n");
 
@@ -146,7 +148,7 @@ public class VirtualPetApp {
 					System.out.println("Enter a description for the cat being given up: ");
 					String newPetDescription = input.nextLine();
 
-					pets.add(new OrganicCat(newPetName, newPetDescription, 50, 50, 50, 50, 50, 0));
+					pets.addPet(new OrganicCat(newPetName, newPetDescription, 50, 50, 50, 50, 50, 0));
 					System.out.println("Your Cat will sure miss you.");
 					System.out.println("Thanks admitting your pet instead of discarding your Cat elsewhere...\n");
 
@@ -157,7 +159,7 @@ public class VirtualPetApp {
 					System.out.println("Enter a description for the robopet or dog being surrendered: ");
 					String newPetDescription = input.nextLine();
 
-					pets.add(new RobotDog(newPetName, newPetDescription, 50, 50, 50, true));
+					pets.addPet(new RobotDog(newPetName, newPetDescription, 50, 50, 50, true));
 					System.out.println("Your robot will miss you.");
 					System.out
 							.println("Thanks for admitting your pet instead of discarding your robopet elsewhere...\n");
