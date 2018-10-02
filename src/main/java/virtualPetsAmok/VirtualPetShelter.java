@@ -143,4 +143,8 @@ public class VirtualPetShelter {
 		return optionNo5Display;
 	}
 
+	public boolean addPet(String petName) {
+		return false;
+	}
+
 }

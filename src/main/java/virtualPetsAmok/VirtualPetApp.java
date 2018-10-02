@@ -24,7 +24,7 @@ public class VirtualPetApp {
 
 		RobotDog robo1 = new RobotDog("RoboCat", "A high-tech Robot.", 50, 60, 70, true);
 		RobotDog robo2 = new RobotDog("Tank", "A robot that desires things like oil.", 30, 40, 60, true);
-		RobotDog robo3 = new RobotDog("Slacker", "A lazy robot dog, hence the name.", 70, 40, 80, true);
+		RobotDog robo3 = new RobotDog("Slacker", "A lazy robot dog, hence the name.", 40, 40, 80, true);
 
 		// adding pets
 		pets.addPet(dog1);
@@ -53,10 +53,10 @@ public class VirtualPetApp {
 			System.out.println("\t\t     **Doggies**\n");
 			System.out.println("Name\t|Hunger\t|Thirst\t|Boredom |Waste  |Happiness");
 			System.out.println("--------|-------|-------|--------|-------|---------");
-			for (VirtualPet VirtualPet : VirtualPet.eachPet()) {
-				if (eachPet instanceof OrganicDog) {
-					if (((OrganicDog) eachPet).getCageStatus() >= 70) {
-						System.out.println(eachPet.getName() + " needs his kennel cleaned out.");
+			for (VirtualPet name : ((VirtualPetShelter) pets).showPets()) {
+				if (name instanceof OrganicDog) {
+					if (((OrganicDog) name).getCageStatus() >= 70) {
+						System.out.println(name.getName() + " needs his kennel cleaned out.");
 						System.out.println("We need to do something about these dog kennel(s), stat!\n");
 					}
 				}
@@ -118,10 +118,10 @@ public class VirtualPetApp {
 				System.out.println(pets.optionNo5Display());
 				String petName = input.nextLine();
 
-				if (!pets.addPet(name)) {
+				if (!pets.addPet(petName)) {
 					System.out.println("This dog doesn't exist.");
 				} else {
-					pets.removePet(name);
+					pets.removePet(petName);
 					System.out.println("Congrats on adopting your new pet! \n" + petName + "!");
 				}
 
